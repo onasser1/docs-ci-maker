@@ -1,5 +1,6 @@
 stages:
   - build
+  - test
   - deploy
 
 build:
@@ -11,6 +12,26 @@ build:
   artifacts:
     paths:
       - "build/"
+
+lint-markdown:
+  stage: test
+  image: node
+  dependencies: []
+  script:
+    - npm install markdownlint-cli2 --global
+    - markdownlint-cli2 -v
+    - markdownlint-cli2 "blog/**/*.md" "docs/**/*.md"
+  allow_failure: true
+test-html:
+  stage: test
+  image: node
+  dependencies:
+    - build-job
+  script:
+    - npm install --save-dev htmlhint
+    - npx htmlhint --version
+    - npx htmlhint build/
+
 pages:
   stage: deploy
   script:
