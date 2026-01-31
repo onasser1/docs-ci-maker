@@ -1,3 +1,7 @@
+stages:
+  - build
+  - deploy
+
 build:
   stage: build
   image: node
@@ -7,3 +11,10 @@ build:
   artifacts:
     paths:
       - "build/"
+deploy:
+  stage: deploy
+  script:
+    - mv build/ public/
+  artifacts:
+    paths:
+      - "public/"
