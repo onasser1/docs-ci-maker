@@ -11,7 +11,7 @@ build:
   artifacts:
     paths:
       - "build/"
-deploy:
+pages:
   stage: deploy
   script:
     - mv build/ public/
