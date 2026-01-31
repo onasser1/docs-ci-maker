@@ -1,0 +1,5 @@
+This file is added through a Merge Request before using rules in GitLab CI/CD configuration files. (.gitlab-ci.yml).
+
+All pipeline stages would run even if it's only a pipeline, we don't need to redeploy the website again from just a merge request, but it will do because of not using rules.
+
+After that we intend to use rules to only run deploy stage when it's merged to the default branch (master) or a change is made to the website directory only for example.
